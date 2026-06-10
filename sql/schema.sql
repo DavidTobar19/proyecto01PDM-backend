@@ -1,5 +1,5 @@
--- Script inicial para MySQL (importar con DBeaver, phpMyAdmin o consola mysql)
--- Base de datos: bolsatrabajo (o el nombre que definas en DB_NAME)
+-- Importar en la base "defaultdb" de Aiven (o la que definas en DB_NAME)
+-- Panel Aiven: Service -> Query editor -> pegar y ejecutar
 
 CREATE TABLE IF NOT EXISTS `android_metadata` (
     `locale` TEXT

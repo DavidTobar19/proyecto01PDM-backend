@@ -1,0 +1,3 @@
+# Descarga el CA certificate desde Aiven:
+# Service -> Connection information -> CA certificate -> Download
+# Guarda el archivo descargado aqui con el nombre: ca.pem
