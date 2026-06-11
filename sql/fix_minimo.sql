@@ -1,5 +1,5 @@
--- Ejecutar COMPLETO en DBeaver conectado a "defaultdb"
--- Boton: Execute SQL Script (Ctrl+Alt+X), NO solo Execute Statement
+-- DEPRECADO: usa schema_completo.sql + datos_opcionales.sql
+-- Script minimo solo para certificaciones (pruebas rapidas).
 
 USE defaultdb;
 

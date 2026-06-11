@@ -1,5 +1,5 @@
--- Importar en Aiven -> defaultdb (DBeaver: ejecutar todo el script)
--- Compatible con MySQL 8.x (sin cabeceras phpMyAdmin)
+-- DEPRECADO: usa schema_completo.sql (tablas vacias) + datos_opcionales.sql (datos base)
+-- Este archivo se mantiene por compatibilidad.
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
