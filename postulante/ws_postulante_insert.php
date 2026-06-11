@@ -20,7 +20,7 @@ if ($idGenero <= 0 || $idTipoDocumento <= 0 || $idUsuario <= 0 || $nombrePostula
     exit;
 }
 
-$sql = 'INSERT INTO POSTULANTE (IDGENERO, IDTIPODOCUMENTO, IDUSUARIO, NOMBREPOSTULANTE, APELLIDOPOSTULANTE, FECHANAC, DUI, NIT, DIRECCION, CORREO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+$sql = 'INSERT INTO POSTULANTE (IDGENERO, IDTIPODOCUMENTO, IDUSUARIO2, NOMBREPOSTULANTE, APELLIDOPOSTULANTE, FECHANAC, DUI, NIT, DIRECCION, CORREO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 $stmt = mysqli_prepare($conexion, $sql);
 
 if (!$stmt) {
