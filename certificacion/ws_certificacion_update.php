@@ -37,7 +37,17 @@ if (mysqli_stmt_execute($stmt)) {
     if (mysqli_stmt_affected_rows($stmt) > 0) {
         echo json_encode(['resultado' => '1', 'mensaje' => 'Actualizado en la nube']);
     } else {
-        echo json_encode(['resultado' => '0', 'mensaje' => 'No se encontro la certificacion']);
+        $check = mysqli_prepare($conexion, 'SELECT IDCERTIFICACION FROM CERTIFICACION WHERE IDCERTIFICACION = ?');
+        mysqli_stmt_bind_param($check, 'i', $idCert);
+        mysqli_stmt_execute($check);
+        $exists = mysqli_stmt_get_result($check)->num_rows > 0;
+        mysqli_stmt_close($check);
+
+        if ($exists) {
+            echo json_encode(['resultado' => '1', 'mensaje' => 'Sin cambios en la nube']);
+        } else {
+            echo json_encode(['resultado' => '0', 'mensaje' => 'No se encontro la certificacion']);
+        }
     }
 } else {
     http_response_code(500);
