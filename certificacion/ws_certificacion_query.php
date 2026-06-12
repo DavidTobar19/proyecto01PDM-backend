@@ -28,7 +28,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     $certificaciones[] = $fila;
 }
 
-echo json_encode($certificaciones, JSON_UNESCAPED_SLASHES);
+echo json_encode($certificaciones);
 
 mysqli_stmt_close($stmt);
 mysqli_close($conexion);
