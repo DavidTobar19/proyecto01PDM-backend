@@ -2,8 +2,16 @@
 header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/../conexion.php';
 
-$sql = 'SELECT * FROM GENERO';
-$stmt = mysqli_prepare($conexion, $sql);
+$idGenero = (int) ($_REQUEST['idGenero'] ?? 0);
+
+if ($idGenero > 0) {
+    $sql = 'SELECT * FROM GENERO WHERE IDPGENERO = ?';
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, 'i', $idGenero);
+} else {
+    $sql = 'SELECT * FROM GENERO';
+    $stmt = mysqli_prepare($conexion, $sql);
+}
 
 if (!$stmt) {
     http_response_code(500);
