@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/../conexion.php';
+require_once __DIR__ . '/../includes/postulante_validacion.php';
 
 // ==========================================
 // 1. RECIBIR DATOS COMUNES DE LA CUENTA
@@ -50,6 +51,15 @@ try {
 
         if ($idGenero <= 0 || $nombrePostulante === '') {
             throw new Exception("Faltan datos obligatorios del postulante");
+        }
+
+        $errorFecha = validar_fecha_nac($fechaNac);
+        if ($errorFecha !== null) {
+            throw new Exception($errorFecha);
+        }
+
+        if (dui_duplicado($conexion, $dui)) {
+            throw new Exception('Ya existe un postulante con este DUI.');
         }
 
         // Insertar POSTULANTE amarrando el IDUSUARIO2

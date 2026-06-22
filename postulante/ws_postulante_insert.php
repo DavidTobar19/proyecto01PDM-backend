@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/../conexion.php';
+require_once __DIR__ . '/../includes/postulante_validacion.php';
 
 $idGenero = (int) ($_REQUEST['idGenero'] ?? 0);
 $idTipoDocumento = (int) ($_REQUEST['idTipoDocumento'] ?? 0);
@@ -17,6 +18,19 @@ $correo = $_REQUEST['correo'] ?? '';
 if ($idGenero <= 0 || $idTipoDocumento <= 0 || $idUsuario <= 0 || $nombrePostulante === '' || $apellidoPostulante === '') {
     http_response_code(400);
     echo json_encode(['resultado' => '0', 'mensaje' => 'Faltan parametros obligatorios']);
+    exit;
+}
+
+$errorFecha = validar_fecha_nac($fechaNac);
+if ($errorFecha !== null) {
+    http_response_code(400);
+    echo json_encode(['resultado' => '0', 'mensaje' => $errorFecha]);
+    exit;
+}
+
+if (dui_duplicado($conexion, $dui)) {
+    http_response_code(409);
+    echo json_encode(['resultado' => '0', 'mensaje' => 'Ya existe un postulante con este DUI.']);
     exit;
 }
 
